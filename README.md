@@ -3,113 +3,41 @@
 
 ## Libc functions
 
-
-* isalpha
-* isdigit
-* isalnum
-* isascii
-* isprint
-* strlen
-* memset
-• bzero
-• memcpy
-• memmove
-• strlcpy
-• strlcat
-• toupper
-• tolower
-• strchr
-• strrchr
-• strncmp
-• memchr
-• memcmp
-• strnstr
-• atoi
-• calloc
-• strdup
++ isalpha
++ isdigit
++ isalnum
++ isascii
++ isprint
++ strlen
++ memset
++ bzero
++ memcpy
++ memmove
++ strlcpy
++ strlcat
++ toupper
++ tolower
++ strchr
++ strrchr
++ strncmp
++ memchr
++ memcmp
++ strnstr
++ atoi
++ calloc
++ strdup
 
 ## Additional functions
 
-Function name | ft_substr
-Prototype | char *ft_substr(char const *s, unsigned int start, size_t len);
-Turn in files | -
-Parameters | s: The string from which to create the substring.
-start: The start index of the substring in the
-string ’s’.
-len: The maximum length of the substring.
-Return value | The substring.
-NULL if the allocation fails.
-External functs. | malloc
-Description | Allocates (with malloc(3)) and returns a substring
-from the string ’s’.
-The substring begins at index ’start’ and is of
-maximum size ’len’.
-
-• ft_strjoin
-Prototype char *ft_strjoin(char const *s1, char const *s2);
-Turn in files -
-Parameters s1: The prefix string.
-s2: The suffix string.
-Return value The new string.
-NULL if the allocation fails.
-External functs. malloc
-Description Allocates (with malloc(3)) and returns a new
-string, which is the result of the concatenation
-of ’s1’ and ’s2’.
-7
-
-• ft_strtrim
-Prototype char *ft_strtrim(char const *s1, char const *set);
-Turn in files -
-Parameters s1: The string to be trimmed.
-set: The reference set of characters to trim.
-Return value The trimmed string.
-NULL if the allocation fails.
-External functs. malloc
-Description Allocates (with malloc(3)) and returns a copy of
-’s1’ with the characters specified in ’set’ removed
-from the beginning and the end of the string.
-
-• ft_split
-Prototype char **ft_split(char const *s, char c);
-Turn in files -
-Parameters s: The string to be split.
-c: The delimiter character.
-Return value The array of new strings resulting from the split.
-NULL if the allocation fails.
-External functs. malloc, free
-Description Allocates (with malloc(3)) and returns an array
-of strings obtained by splitting ’s’ using the
-character ’c’ as a delimiter. The array must end
-with a NULL pointer.
-
-• ft_itoa
-Prototype char *ft_itoa(int n);
-Turn in files -
-Parameters n: the integer to convert.
-Return value The string representing the integer.
-NULL if the allocation fails.
-External functs. malloc
-Description Allocates (with malloc(3)) and returns a string
-representing the integer received as an argument.
-Negative numbers must be handled.
-
-• ft_strmapi
-Prototype char *ft_strmapi(char const *s, char (*f)(unsigned
-int, char));
-Turn in files -
-Parameters s: The string on which to iterate.
-f: The function to apply to each character.
-Return value The string created from the successive applications
-of ’f’.
-Returns NULL if the allocation fails.
-External functs. malloc
-Description Applies the function ’f’ to each character of the
-string ’s’, and passing its index as first argument
-to create a new string (with malloc(3)) resulting
-from successive applications of ’f’.
-
-• ft_striteri
+Function | Description
+--- | ---
+ft_substr | Allocates a substring from an existing string
+ft_strjoin | Allocates a string by concatenating two strings
+ft_strtrim | Allocates a trimmed copy of a larger string
+ft_split | Allocates an array of strings by splitting a string using a delimiter
+ft_itoa | Allocates a string representation of an integer
+ft_strmapi | Allocates a string based on another string with each character being modified by a function
+ft_striteri 
 Prototype void ft_striteri(char *s, void (*f)(unsigned int,
 char*));
 Turn in files -
