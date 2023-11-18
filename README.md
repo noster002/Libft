@@ -1,8 +1,9 @@
 # Libft
 42 School - Level00 - Libft
 
+Simple C Library with mostly recoded and some new utility functions
+
 ## Usage
 
-`make` without bonus
-
-`make bonus` with bonus
+`make` to compile without bonus.
+`make bonus` to compile with bonus.
