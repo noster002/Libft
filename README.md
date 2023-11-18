@@ -4,4 +4,5 @@
 ## Usage
 
 `make` without bonus
+
 `make bonus` with bonus
