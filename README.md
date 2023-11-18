@@ -3,13 +3,14 @@
 
 ## Libc functions
 
-• isalpha
-• isdigit
-• isalnum
-• isascii
-• isprint
-• strlen
-• memset
+
+* isalpha
+* isdigit
+* isalnum
+* isascii
+* isprint
+* strlen
+* memset
 • bzero
 • memcpy
 • memmove
