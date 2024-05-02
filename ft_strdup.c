@@ -22,22 +22,21 @@
 
 char	*ft_strdup(const char *s)
 {
-	char	*d;
-	size_t	count;
-	int		i;
+	char	*dup;
+	size_t	i;
 
-	count = ft_strlen(s);
 	i = 0;
-	d = (char *)malloc(count + 1);
-	if (d != 0)
+	while (s[i])
+		i++;
+	dup = (char *)malloc(i + 1);
+	if (dup)
 	{
-		while (count > 0)
+		dup[i] = '\0';
+		while (i > 0)
 		{
-			d[i] = s[i];
-			i++;
-			count--;
+			i--;
+			dup[i] = s[i];
 		}
 	}
-	d[i] = 0;
-	return (d);
+	return (dup);
 }

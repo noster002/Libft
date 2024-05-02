@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 /*
  * + Adds the element ’new’ at the end of the list.
@@ -20,14 +20,11 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*tmp;
 
-	if (lst != 0)
+	if (*lst == NULL)
+		*lst = new;
+	else
 	{
-		if (*lst == 0)
-			*lst = new;
-		else
-		{
-			tmp = ft_lstlast(*lst);
-			tmp->next = new;
-		}
+		tmp = ft_lstlast(*lst);
+		tmp->next = new;
 	}
 }

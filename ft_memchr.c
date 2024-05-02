@@ -24,16 +24,13 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char	*scan;
-	size_t			count;
-
-	scan = (unsigned char *)s;
-	count = 0;
-	while (count < n)
+	while (*(unsigned char *)s && n > 1 && \
+		*(unsigned char *)s != (unsigned char)c)
 	{
-		if (scan[count] == (unsigned char)c)
-			return ((void *)&scan[count]);
-		count++;
+		s++;
+		n--;
 	}
-	return (0);
+	if (*(unsigned char *)s == (unsigned char)c)
+		return ((void *)s);
+	return (NULL);
 }

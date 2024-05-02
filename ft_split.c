@@ -21,96 +21,85 @@
  *   NULL if the allocation fails
  */
 
-static char	**ft_free(char **p, size_t size)
+static void	ft_free(char **p)
 {
-	while (size != 0)
-	{
-		free(p[size]);
-		size--;
-	}
-	free(p);
-	return (0);
-}
-
-static size_t	ft_nbr_tab(const char *s, char c)
-{
-	size_t	count;
 	size_t	i;
 
-	if (ft_strlen(s) == 0 || s[0] == 0)
-		return (0);
-	if (c == 0)
-		return (1);
 	i = 0;
-	count = 0;
-	while (s[i] != 0)
+	while (p[i])
 	{
-		if (s[i] != c)
+		free(p[i]);
+		i++;
+	}
+	free(p);
+	return ;
+}
+
+static size_t	ft_arrlen(const char *s, char c)
+{
+	size_t	i;
+
+	i = 0;
+	while (*s)
+	{
+		while (*s == c)
+			s++;
+		if (*s)
+			i++;
+		while (*s && *s != c)
+			s++;
+	}
+	return (i);
+}
+
+static size_t	ft_substrlen(const char *s, char c)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] && s[i] != c)
+		i++;
+	return (i);
+}
+
+static int	ft_fill(char **arr, const char *s, char c)
+{
+	size_t	i;
+
+	while (*s)
+	{
+		while (*s == c)
+			s++;
+		if (!(*s))
+			break ;
+		*arr = (char *)malloc((ft_substrlen(s, c) + 1) * sizeof(char));
+		if (!(*arr))
+			return (0);
+		i = 0;
+		while (*s && *s != c)
 		{
-			count++;
-			while (s[i] != c)
-			{
-				if (s[i] == 0)
-					return (count);
-				i++;
-			}
+			(*arr)[i] = *s;
+			i++;
+			s++;
 		}
-		i++;
+		(*arr)[i] = '\0';
+		arr++;
 	}
-	return (count);
-}
-
-static size_t	ft_nbr_arr(const char *s, char c, unsigned int i)
-{
-	size_t	count;
-
-	count = 0;
-	while (s[i] != 0 && s[i] == c)
-		i++;
-	while (s[i + count] != 0)
-	{
-		if (s[i + count] == c)
-			return (count);
-		count++;
-	}
-	return (count);
-}
-
-static size_t	ft_delimiter(const char *s, char c, unsigned int i, size_t l)
-{
-	size_t	j;
-
-	j = 0;
-	while (s[i + l + j] == c)
-		j++;
-	return (j);
+	*arr = NULL;
+	return (1);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char			**tab;
-	size_t			cnt_tab;
-	size_t			i;
-	unsigned int	index;
-	size_t			len;
+	char	**arr;
 
-	cnt_tab = ft_nbr_tab(s, c);
-	tab = (char **)malloc((cnt_tab + 1) * sizeof(char *));
-	i = 0;
-	index = 0;
-	len = 0;
-	if (tab != 0)
+	arr = (char **)malloc((ft_arrlen(s, c) + 1) * sizeof(char *));
+	if (!arr)
+		return (NULL);
+	if (!ft_fill(arr, s, c))
 	{
-		while (i < cnt_tab)
-		{
-			index = index + len + ft_delimiter(s, c, index, len);
-			len = ft_nbr_arr(s, c, index);
-			tab[i] = ft_substr(s, index, len);
-			if (tab[i] == 0)
-				return (ft_free(tab, i));
-			i++;
-		}
-		tab[cnt_tab] = 0;
+		ft_free(arr);
+		return (NULL);
 	}
-	return (tab);
+	return (arr);
 }

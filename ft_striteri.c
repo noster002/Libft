@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nosterme <nosterme@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/15 12:33:45 by nosterme          #+#    #+#             */
-/*   Updated: 2021/05/21 15:05:11 by nosterme         ###   ########.fr       */
+/*   Created: 2021/05/19 15:03:47 by nosterme          #+#    #+#             */
+/*   Updated: 2021/05/28 13:36:35 by nosterme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
- * + returns a pointer to the last occurrence of the character c
- *   in the string s or NULL if the character is not found
- *   If c is specified as'\0',
- *   these functions return a pointer to the terminator.
- * + man strrchr
+ * + Applies the function ’f’ on each character of the string ’s’,
+ *   passing its index as first argument.
+ *   Each character is passed by address to ’f’ to be modified if necessary.
  */
 
-char	*ft_strrchr(const char *s, int c)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	const char	*start;
+	size_t	i;
 
-	start = s;
-	while (*s)
-		s++;
-	while (s >= start && *s != c)
-		s--;
-	if (*s == c)
-		return ((char *)s);
-	return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		(*f)(i, &s[i]);
+		i++;
+	}
+	return ;
 }

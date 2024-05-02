@@ -21,21 +21,19 @@
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	size_t	count;
+	size_t	i;
 
-	count = 0;
+	i = 0;
 	if (size > 0)
 	{
-		while (*(src + count) != 0)
+		while (src[i] && i < (size - 1))
 		{
-			if (count == (size - 1))
-				break ;
-			*(dest + count) = *(src + count);
-			count++;
+			dest[i] = src[i];
+			i++;
 		}
-		*(dest + count) = 0;
+		dest[i] = '\0';
 	}
-	while (*(src + count) != 0)
-		count++;
-	return (count);
+	while (src[i])
+		i++;
+	return (i);
 }

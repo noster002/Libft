@@ -16,21 +16,19 @@
  * + Outputs the integer ’n’ to the given file descriptor.
  */
 
+static int	ft_abs(int n)
+{
+	int	mask;
+
+	mask = n >> 31;
+	return ((n ^ mask) - mask);
+}
+
 void	ft_putnbr_fd(int n, int fd)
 {
-	long	nbr;
-	char	c;
-
-	nbr = n;
-	if (nbr < 0)
-	{
+	if (n < 0)
 		ft_putchar_fd('-', fd);
-		nbr *= -1;
-	}
-	if (nbr >= 10)
-	{
-		ft_putnbr_fd((nbr / 10), fd);
-	}
-	c = nbr % 10 + '0';
-	write(fd, &c, 1);
+	if (n / 10)
+		ft_putnbr_fd(ft_abs(n / 10), fd);
+	ft_putchar_fd((ft_abs(n % 10) + '0'), fd);
 }

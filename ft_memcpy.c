@@ -22,15 +22,12 @@
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	unsigned char	*d;
-
-	d = (unsigned char *)dest;
+	if (dest == NULL && src == NULL)
+		return (NULL);
 	while (n > 0)
 	{
-		*d = *(char *)src;
-		d++;
-		src++;
 		n--;
+		*(unsigned char *)(dest + n) = *(unsigned char *)(src + n);
 	}
 	return (dest);
 }

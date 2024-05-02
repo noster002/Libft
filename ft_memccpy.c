@@ -6,7 +6,7 @@
 /*   By: nosterme <nosterme@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 16:48:58 by nosterme          #+#    #+#             */
-/*   Updated: 2021/05/21 14:23:38 by nosterme         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:31:01 by nosterme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,14 @@
 
 void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 {
-	unsigned char	*d;
-
-	d = (unsigned char *)dest;
 	while (n > 0)
 	{
-		*d = *(char *)src;
-		if (*d == c)
-			return (++d);
-		d++;
+		*(unsigned char *)dest = *(unsigned char *)src;
+		if (*(unsigned char *)dest == (unsigned char)c)
+			return (++dest);
+		dest++;
 		src++;
 		n--;
 	}
-	return (0);
+	return (NULL);
 }

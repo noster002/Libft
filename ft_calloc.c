@@ -26,21 +26,18 @@
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	char	*ptr_mal;
-	void	*ptr_cal;
 	size_t	n;
+	void	*p;
 
 	n = nmemb * size;
-	ptr_mal = (char *)malloc(n);
-	ptr_cal = ptr_mal;
-	if (ptr_mal != 0)
+	p = malloc(n);
+	if (p)
 	{
 		while (n > 0)
 		{
-			*ptr_mal = 0;
-			ptr_mal++;
 			n--;
+			*(char *)(p + n) = '\0';
 		}
 	}
-	return (ptr_cal);
+	return (p);
 }

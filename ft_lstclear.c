@@ -21,15 +21,11 @@
 void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
 	t_list	*tmp;
-	t_list	*next;
 
-	tmp = *lst;
-	while (tmp != 0)
+	while (*lst)
 	{
-		next = tmp->next;
-		(*del)(tmp->content);
-		free(tmp);
-		tmp = next;
+		tmp = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = tmp;
 	}
-	*lst = 0;
 }

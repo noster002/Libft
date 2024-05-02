@@ -20,28 +20,25 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*new_str;
-	size_t	len_s1;
-	size_t	len_s2;
+	char	*s;
+	size_t	i;
+	size_t	j;
 
-	len_s1 = ft_strlen(s1);
-	len_s2 = ft_strlen(s2);
-	new_str = (char *)malloc(len_s1 + len_s2 + 1);
-	len_s1 = 0;
-	len_s2 = 0;
-	if (new_str != 0)
+	s = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!s)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s1[i])
 	{
-		while (s1[len_s1] != 0)
-		{
-			new_str[len_s1] = s1[len_s1];
-			len_s1++;
-		}
-		while (s2[len_s2] != 0)
-		{
-			new_str[len_s1 + len_s2] = s2[len_s2];
-			len_s2++;
-		}
-		new_str[len_s1 + len_s2] = 0;
+		s[i] = s1[i];
+		i++;
 	}
-	return (new_str);
+	while (s2[j])
+	{
+		s[i + j] = s2[j];
+		j++;
+	}
+	s[i + j] = '\0';
+	return (s);
 }

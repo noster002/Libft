@@ -26,25 +26,11 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int		i;
-	size_t	j;
-
-	i = 0;
-	j = 0;
-	while (j < n)
+	while (*s1 && n > 1 && *(unsigned char *)s1 == *(unsigned char *)s2)
 	{
-		if ((unsigned char)s1[j] == (unsigned char)s2[j])
-			j++;
-		else if ((unsigned char)s1[j] > (unsigned char)s2[j])
-		{
-			i = 1;
-			break ;
-		}
-		else if ((unsigned char)s1[j] < (unsigned char)s2[j])
-		{
-			i = -1;
-			break ;
-		}
+		s1++;
+		s2++;
+		n--;
 	}
-	return (i);
+	return ((int)(*(unsigned char *)s1 - *(unsigned char *)s2));
 }

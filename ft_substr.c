@@ -21,22 +21,20 @@
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*substr;
-	size_t	count;
+	size_t	i;
 
-	count = 0;
-	if (s == 0)
-		return (0);
 	if ((unsigned int)ft_strlen(s) < start)
 		return (ft_strdup(""));
+	i = 0;
 	substr = (char *)malloc((len + 1) * sizeof(*s));
-	if (substr != 0)
+	if (substr)
 	{
-		while (count < len)
+		while (i < len)
 		{
-			substr[count] = s[start + count];
-			count++;
+			substr[i] = s[start + i];
+			i++;
 		}
-		substr[count] = 0;
+		substr[i] = 0;
 	}
 	return (substr);
 }

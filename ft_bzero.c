@@ -20,13 +20,10 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	unsigned char	*c;
-
-	c = (unsigned char *)s;
 	while (n > 0)
 	{
-		*c = '\0';
-		c++;
+		*(unsigned char *)s = '\0';
+		s++;
 		n--;
 	}
 }

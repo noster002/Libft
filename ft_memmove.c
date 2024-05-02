@@ -14,23 +14,36 @@
 
 /*
  * + copies n bytes from memory area src to memory area dest
- *   The memory areas may overlap: 
- *   copying takes place as though the bytes in src are first copied
- *   into a temporary array that does not overlap src or dest,
- *   and the bytes are then copied from the temporary array to dest.
+ *   The memory areas may overlap:
+ *   copying takes place as though the bytes in src are copied first to last
+ *   if dest is smaller than src, or last to first if dest is bigger than src,
+ *   so that the overlap gets copied before it gets overwritten.
  * + returns a pointer to dest
  * + man memmove
  */
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	unsigned char	c[100];
-	unsigned char	*d;
-	unsigned char	*s;
+	void	*save;
 
-	d = (unsigned char *)dest;
-	s = &c[0];
-	s = ft_memcpy(s, src, n);
-	dest = ft_memcpy(d, s, n);
-	return (dest);
+	if (dest == NULL && src == NULL)
+		return (NULL);
+	else if (dest > src)
+	{
+		while (n > 0)
+		{
+			n--;
+			*(unsigned char *)(dest + n) = *(unsigned char *)(src + n);
+		}
+		return (dest);
+	}
+	save = dest;
+	while (n > 0)
+	{
+		*(unsigned char *)dest = *(unsigned char *)src;
+		dest++;
+		src++;
+		n--;
+	}
+	return (save);
 }
